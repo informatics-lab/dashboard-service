@@ -1,5 +1,5 @@
 # dashboard-service
-Create services to publish dynamic dashboards (v. early stages)
+Create services to publish dynamic dashboards (v. early stages). The Jupyter Dashboard project is sadly no longer supported, so we're working on using Bokeh. Our aim is to make the publishing workflow from notebook to (public or authenticated) dashboard as easy as possible.
 
 Early prototype, under construction
 
