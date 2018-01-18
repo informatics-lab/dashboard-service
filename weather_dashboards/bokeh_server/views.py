@@ -1,13 +1,10 @@
 from django.shortcuts import render
-from bokeh.plotting import figure
-from bokeh.resources import CDN
-from bokeh.embed import components
+from bokeh.embed import server_document 
 
-def simple_chart(request):
-    plot = figure()
-    plot.circle([1,2], [3,4])
+from .models import Dashboard
 
-    script, div = components(plot, CDN)
-
-    return render(request, "weather_dashboards/simple_chart.html", {"the_script": script, "the_div": div})
+def dashboard(request, dashboard_id):
+    url = Dashboard.objects.get(id=dashboard_id).url
+    script = server_document(url)
+    return render(request, "weather_dashboards/dashboard.html", {"script": script})
 
