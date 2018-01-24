@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports: 
+      - "80:80"
+    depends_on:
+      - django
+    links:
+      - django
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - static-content:/usr/src/app
+  django:
+    build: ./django_dashboards
+    expose:
+      - "8000"
+    volumes:
+      - static-content:/usr/src/app/static
+      
+volumes:
+  static-content:
